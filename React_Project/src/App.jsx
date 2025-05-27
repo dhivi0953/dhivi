@@ -4,6 +4,8 @@ import './App.css'
 import Child from "./Child"
 import Child1 from './Child1'
 import Home from "./Home"
+import User from './User'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 
 
@@ -36,11 +38,20 @@ function App() {
   // }
 
   const [users, setUsers] = useState([])
-  function data() {
-    const res = fetch("https://dummyjson.com/product")
-      .then((res) => res.json())
-      .then((data) => setUsers(data.products))
+     function data() {
+     const res = fetch("https://dummyjson.com/products")
+     .then((res) => res.json())
+     .then((data) => setUsers(data.products))
       .catch((err) => console.log("err", err))
+
+//       const res = await axios("https://dummyjson.com/products")
+//       setUsers(res.data.products)
+//       console.log(res.data.products)
+// }     catch (error){
+//   console.error("error", error.message)
+// }
+      
+      
   }
 
   useEffect(() => {
@@ -80,9 +91,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/child" element={<Child users={users} />}>
-
-          </Route>
+          <Route path="/child" element={<Child users={users} />}> </Route>
+          <Route path='/user' element={<User />}></Route>
         </Routes>
       </Router>
     </>
